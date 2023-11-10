@@ -1,0 +1,41 @@
+<template>
+
+    <div style="background-color: white; margin:50px 50px 50px 50px;padding:50px 50px 50px 50px">
+
+        <div>
+            <h2 style="margin-left: 15px;">
+                Checks if there are any important public holidays on my date of birth.
+            </h2>
+
+        </div>
+        <div class="slds-p-around_medium">
+            <lightning-input label="ID Number" type="text" value={inputText}
+                onchange={handleIdChange}></lightning-input>
+        </div>
+
+        <div>
+            <lightning-button variant="brand" label="Search" title="Primary action" onclick={handleClick}
+                class="slds-m-left_x-small" disabled={isSearchDisabled}></lightning-button>
+            <lightning-button variant="brand" label="Save" title="Primary action" onclick={handleSave}
+                class="slds-m-left_x-small"></lightning-button>
+            <template if:true={showResult}>
+                <template if:true={checksumValid}>
+                    Number is Valid
+
+
+                    <lightning-card title="List of Holidays" icon-name="custom:custom9">
+                        <div style="height: 250px;">
+                            <lightning-datatable key-field="employeeId" data={holidays} columns={holidayColumns}>
+                            </lightning-datatable>
+                        </div>
+                    </lightning-card>
+                </template>
+                <template if:false={checksumValid}>
+                    Number is not Valid
+                </template>
+            </template>
+
+        </div>
+    </div>
+
+</template>
